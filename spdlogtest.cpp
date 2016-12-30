@@ -8,14 +8,16 @@ using namespace std;
 
 #define myinfo(fmt, ...) \
   do { \
-  mylogger->info("[{}:{}:{}] " fmt, __FILE__, __func__, __LINE__, __VA_ARGS__);\
+  mylogger->info("[{}:{}:{}] " fmt, __FILE__, __func__, __LINE__, ##__VA_ARGS__);\
 } while (0)
 
 int main(int argc, char* argv[]) {
+
   //Multithreaded console logger(with color support)
   //auto console = spdlog::stdout_color_mt("console");
   //console->info("Welcome to spdlog!") ;
   //console->info("An info message example {}..", 1);
+
   try {
     std::vector<spdlog::sink_ptr> sinks;
     sinks.push_back(std::make_shared<spdlog::sinks::stdout_sink_mt>());
@@ -32,7 +34,7 @@ int main(int argc, char* argv[]) {
     //auto file_logger =
     //  spdlog::rotating_logger_mt("file_logger", "/tmp/log/spdlog.log", 1024 * 1024, 3);
 
-    for (int i = 0; i < 1000; i++) {
+    for (int i = 0; i < 10; i++) {
       //mylogger->info("[{}:{}] start to do logging in iter {}",
       //    __FILE__, __LINE__, i);
       myinfo("start to do logging in iter {}", i);
@@ -41,4 +43,6 @@ int main(int argc, char* argv[]) {
     std::cout << "Log initialization failed: " << ex.what() << std::endl;
   }
 
+
+  return 0;
 }
