@@ -5,7 +5,7 @@
 using namespace std;
 
 int main(int argc, char* argv[]) {
-  HcdLogger::Init("/tmp/logs/spdlog", 1, 3, true);
+  HcdLogger::Init("/tmp/logs/hcd", 1, 3, true);
 
   std::vector<LogLevel> levels = {trace, debug, info, warn, err, critical, off};
 
